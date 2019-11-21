@@ -6,7 +6,7 @@ let computerMove = 'nieznany ruch';
 
 if(randomNumber === 1){
   computerMove = 'kamień'; 
-}else if (randomNumber == 2){
+}else if (randomNumber === 2){
   computerMove = 'papier';
 }else (randomNumber === 3){
     computerMove = 'nożyce';
@@ -39,7 +39,7 @@ if( computerMove === 'kamień' && playerMove === 'papier'){
     console.log('Ty wygrywasz!');
   }
 
-if( computerMove === 'kamień' && playerMove == 'kamień') {
+if( computerMove === 'kamień' && playerMove === 'kamień') {
     console.log('Remis');  
   } else if(computerMove === 'papier' && playerMove === 'papier'){
     console.log('Remis');  
