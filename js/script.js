@@ -1,28 +1,15 @@
 function playGame(){
-  if(playerInput);
+  
 
-  function clearMessages();
-  const randomNumber = Math.floor(Math.random() * 3 + 1);
+  function generateRamdomNumber(){
+    return Math.floor(Math.random() * 3 + 1);
+  }
+  
 
-  console.log('Wylosowana liczba to: ' + randomNumber);
+  
 
-  let computerMove = getMoveName(randomNumber);
-
-  /* if(randomNumber === 1){
-    computerMove = 'kamień'; 
-  }else if (randomNumber === 2){
-    computerMove = 'papier';
-  }else (randomNumber === 3){
-     computerMove = 'nożyce';
-  } 
-
-  console.log('Mój ruch to: ' + ComputerMove);
-
-  let playerInput = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.');
-
-  console.log('Gracz wpisał: ' + playerInput);*/ 
-
-  let playerMove = getMoveName(randomNumber);
+  
+  
 
   function getMoveName(argMoveId){
     if(argMoveId === 1){
@@ -37,65 +24,55 @@ function playGame(){
     }
   }
 
-  /* if(playerInput === '1'){
-    playerMove = 'kamień';
-  }else if(playerInput ==='2'){
-    playerMove = 'papier';  
-  }else if(playerInput ==='3'){
-      playerMove = 'nożyce';
-  } 
+  
 
-  console.log('Twój ruch to: ' + PlayerMove); */
-
-  console.log('moves:', argComputerMove, argPlayerMove);
+  
 
   function displayResult(argComputerMove, argPlayerMove){
     console.log('Zagrałem ' + argComputerMove + ', a Ty ' + argPlayerMove);
 
-    if(argComputerMove === 'kamień' && argPlayerMove === 'papier'){
+    if (argComputerMove === 'kamień' && argPlayerMove === 'papier'){
       console.log('Ty wygrywasz!');
-    } else {
-      console.log('Tym razem przegrywasz :(');
-    } if( argComputerMove === 'papier' && argPlayerMove === 'nożyce'){
+    } if (argComputerMove === 'papier' && argPlayerMove === 'nożyce'){
       console.log('Ty wygrywasz!');
-    } else {
-      console.log('Tym razem przegrywasz :(');
-    } if( argComputerMove === 'nożyce' && argPlayerMove === 'kamień'){
+    } if (argComputerMove === 'nożyce' && argPlayerMove === 'kamień'){
       console.log('Ty wygrywasz!');
+    } if (argComputerMove === 'kamień' && argPlayerMove === 'kamień'){
+        console.log('Remis, spróbuj jeszcze raz');
+    } if (argComputerMove === 'papier' && argPlayerMove === 'papier'){
+        console.log('Remis, spróbuj jeszcze raz');
+    } if (argComputerMove === 'nożyce' && argPlayerMove === 'nożyce'){
+        console.log('Remis, spróbuj jeszce raz');
     } else {
-      console.log('Tym razem przegrywasz :(');
+        console.log('Tym razem przegrywasz :(');
     }
   }
-  /* if( computerMove === 'kamień' && playerMove === 'papier'){
-     console.log('Ty wygrywasz!');
-    }else if(computerMove === 'papier' && playerMove === 'nożyce'){
-     console.log('Ty wygrywasz!');
-    }else if(computerMove === 'nożyce' && playerMove === 'kamień'){
-      console.log('Ty wygrywasz!');
-    }
+  
+   function buttonClicked(buttonClicked){
+    const randomNumber = generateRamdomNumber();
+    
 
-  if( computerMove === 'kamień' && playerMove === 'kamień') {
-      console.log('Remis');  
-    } else if(computerMove === 'papier' && playerMove === 'papier'){
-      console.log('Remis');  
-    } else if(computerMove === 'nożyce' && playerMove === 'nożyce'){
-      console.log('Remis');    
-   } */
-   function buttonClicked(){
-    console.log('Wybrałeś ');
+    let computerMove = getMoveName(randomNumber);
+    console.log('komputer: ' + computerMove);
+
+    let playerMove = getMoveName(buttonClicked);
+    console.log('Wybrałem : ' + playerMove);
+
+    displayResult(computerMove,playerMove)
   }
   
-  let testButton = document.getElementById('play-rock');
+  let rockButton = document.getElementById('play-rock');
   
-  testButton.addEventListener('click', buttonClicked);
+  rockButton.addEventListener('click',()=> buttonClicked(1));
 
-  let testButton = document.getElementById('play-paper');
+  let paperButton = document.getElementById('play-paper');
   
-  testButton.addEventListener('click', buttonClicked);
+  paperButton.addEventListener('click',()=> buttonClicked(2));
 
-  let testButton = document.getElementById('play-scissors');
+  let scissorsButton = document.getElementById('play-scissors');
   
-  testButton.addEventListener('click', buttonClicked);
+  scissorsButton.addEventListener('click',()=> buttonClicked(3));
   
 }
+playGame();
 
