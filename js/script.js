@@ -1,6 +1,22 @@
+"use strict";
+
 function playGame(){
   
+  let count = (function() {
 
+    var counter = 0
+    if (counter > 6) {
+      console.log("przekroczyłeś limit 6 prób"); 
+      return function(){
+        return counter +=1;
+      };
+    }
+  })
+
+  function displayCount(){
+    
+  }
+  
   function generateRamdomNumber(){
     return Math.floor(Math.random() * 3 + 1);
   }
@@ -31,26 +47,23 @@ function playGame(){
   function displayResult(argComputerMove, argPlayerMove){
     console.log('Zagrałem ' + argComputerMove + ', a Ty ' + argPlayerMove);
 
-    if (argComputerMove === 'kamień' && argPlayerMove === 'papier'){
+    
+     if (argComputerMove === argPlayerMove) {
+      console.log('Remis, spróbuj jeszcze raz');
+   } else if (argComputerMove === 'kamień' && argPlayerMove === 'papier') {
       console.log('Ty wygrywasz!');
-    } if (argComputerMove === 'papier' && argPlayerMove === 'nożyce'){
-      console.log('Ty wygrywasz!');
-    } if (argComputerMove === 'nożyce' && argPlayerMove === 'kamień'){
-      console.log('Ty wygrywasz!');
-    } if (argComputerMove === 'kamień' && argPlayerMove === 'kamień'){
-        console.log('Remis, spróbuj jeszcze raz');
-    } if (argComputerMove === 'papier' && argPlayerMove === 'papier'){
-        console.log('Remis, spróbuj jeszcze raz');
-    } if (argComputerMove === 'nożyce' && argPlayerMove === 'nożyce'){
-        console.log('Remis, spróbuj jeszce raz');
-    } else {
-        console.log('Tym razem przegrywasz :(');
-    }
+   } else if (argComputerMove === 'papier' && argPlayerMove === 'nożyce') {
+       console.log('Ty wygrywasz!');
+   } else if (argComputerMove === 'nożyce' && argPlayerMove === 'kamień') {
+       console.log('Ty wygrywasz!');
+   } else {
+       console.log('Tym razem przegrywasz 😞');
+   }
   }
   
    function buttonClicked(buttonClicked){
+    counter++;
     const randomNumber = generateRamdomNumber();
-    
 
     let computerMove = getMoveName(randomNumber);
     console.log('komputer: ' + computerMove);
