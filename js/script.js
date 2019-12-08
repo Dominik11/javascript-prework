@@ -1,32 +1,31 @@
 "use strict";
+//global varss
+let counter = 0;
+let maxGameRounds = 0;
+let computerPoints = 0;
+let yourPoints = 0;
+
+const setMaxGameRounds = function() {
+  let gameNumber = parseInt(prompt("ile gier gramy?", 3));
+  console.log(gameNumber);
+  if (gameNumber && Number.isInteger(gameNumber) && gameNumber > 0 && gameNumber < 100){
+    maxGameRounds = gameNumber;
+  } else {
+    setMaxGameRounds();
+  }
+
+};
 
 function playGame(){
-  
-  let count = (function() {
-
-    var counter = 0
-    if (counter > 6) {
-      console.log("przekroczyłeś limit 6 prób"); 
-      return function(){
-        return counter +=1;
-      };
+    setMaxGameRounds();
+    if (counter === 0 && maxGameRounds === 0) {
+      maxGameRounds = parseInt(prompt("ile gier gramy?", 3));
     }
-  })
-
-  function displayCount(){
-    
-  }
   
   function generateRamdomNumber(){
     return Math.floor(Math.random() * 3 + 1);
   }
   
-
-  
-
-  
-  
-
   function getMoveName(argMoveId){
     if(argMoveId === 1){
       return 'kamień';
@@ -51,18 +50,43 @@ function playGame(){
      if (argComputerMove === argPlayerMove) {
       console.log('Remis, spróbuj jeszcze raz');
    } else if (argComputerMove === 'kamień' && argPlayerMove === 'papier') {
-      console.log('Ty wygrywasz!');
+      yourPoints = ++yourPoints;
+    console.log('Ty wygrywasz!');
    } else if (argComputerMove === 'papier' && argPlayerMove === 'nożyce') {
-       console.log('Ty wygrywasz!');
+      yourPoints = ++yourPoints;
+    console.log('Ty wygrywasz!');
    } else if (argComputerMove === 'nożyce' && argPlayerMove === 'kamień') {
-       console.log('Ty wygrywasz!');
+      yourPoints = ++yourPoints;
+      console.log('Ty wygrywasz!');
    } else {
-       console.log('Tym razem przegrywasz 😞');
+      computerPoints = ++yourPoints;
+      console.log('Tym razem przegrywasz 😞');
    }
+   function resetWyniku (){
+    counter = 0;
+    maxGameRounds = 0;
+    computerPoints = 0;
+    yourPoints = 0;
+   }
+   // porownanie wynikow
+   if (counter >= maxGameRounds){
+     if(yourPoints > computerPoints){
+       console.log('wygrales globalnie')
+     }
+     if (computerPoints > yourPoints) {
+       console.log('przegrales globalnie')
+     }
+     if (computerPoints === yourPoints) {
+       console.log('remis globalnie')
+     }
+     resetWyniku();
+     console.log(counter);
+    }
+
   }
   
    function buttonClicked(buttonClicked){
-    counter++;
+    counter = ++counter;
     const randomNumber = generateRamdomNumber();
 
     let computerMove = getMoveName(randomNumber);
@@ -88,4 +112,6 @@ function playGame(){
   
 }
 playGame();
+
+
 
